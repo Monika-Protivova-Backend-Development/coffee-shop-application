@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/kotlin.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/vs.css">
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+		<section data-background-gradient="var(--kotlin-gradient)">
+			<i>Week 2 | Lesson 10</i>
+			<h1>The SOLID Principle</h1>
+			<em>Object Oriented Design Patterns</em><br />
+			<em>Functional programming principles</em><br />
+			<em>Generics</em>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>The SOLID Principle</h2>
+			</section>
+			<section>
+				<h3>The SOLID Principle</h3>
+				<div class="summary">
+					The <span class="highlight">SOLID</span> principle is a set of five principles that help us write better code,
+					making it more maintainable, readable, and easier to upgrade and modify.
+				</div>
+				<div class="content">
+					<p>
+						These principles are not specific to Java, but they are applicable to any object-oriented language.
+					</p>
+					<p>
+						The <span class="highlight">SOLID</span> principle is an acronym for the following:
+					</p>
+					<ul>
+						<li><span class="highlight">S</span>ingle Responsibility Principle</li>
+						<li><span class="highlight">O</span>pen/Closed Principle</li>
+						<li><span class="highlight">L</span>iskov Substitution Principle</li>
+						<li><span class="highlight">I</span>nterface Segregation Principle</li>
+						<li><span class="highlight">D</span>ependency Inversion Principle</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Single Responsibility Principle</h3>
+				<div class="summary">
+					Each class should have a single responsibility or reason to change.
+					This helps to build a system that is better defined, modular, and easier to maintain.
+				</div>
+				<div class="content">
+					We have seed this principle applied when we talked about encapsulation. Also, you will
+					find that if this principle is applied correctly, your code will be much easier to test.
+				</div>
+			</section>
+			<section>
+				<h3>Open/Closed Principle</h3>
+				<div class="summary">
+					Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.
+					This prevents issues introduced by changes to existing code.
+				</div>
+				<div class="content">
+					<ul>
+						<li>
+							<span class="highlight">Open for extension</span><br />
+							means that the class should be designed in such a way that
+							it can be extended to perform new things.
+							<br />
+							<br />
+							Example of this would be extending class with methods to handle new requirements without modifying the existing ones.</sub>
+							<br />
+							<br />
+						</li>
+						<li>
+							<span class="highlight">Closed for modification</span><br />
+							means that once the class has been developed and tested, the code behavior must not change.
+							<br />
+							<br />
+							Example of this would be that the class should not be modified to handle new requirements,<br />
+							but rather extended, as explained above.
+							<br />
+							<br />
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Liskov Substitution Principle</h3>
+				<div class="summary">
+					<!--					This is a specific definition of a kind of substitutability on strong behavioral subtyping.-->
+					<!--					It indicates that one should be able to use any derived class instead of a parent class and have it behave in the same manner without modification.-->
+					One should be able to use any derived class instead of a parent class and have it behave in the same manner without modification.
+				</div>
+				<div class="content">
+					We have already seen the Liskov principle applied when we worked with inheritance, abstract classes and interfaces.
+				</div>
+			</section>
+			<section>
+				<h3>Interface Segregation Principle</h3>
+				<div class="summary">
+					Many specific client-specific interfaces are better than one general-purpose interface.
+					This means that you should not impose the clients with interfaces that they don't use.
+				</div>
+				<div class="content">
+					<p>
+						Imagine you have a class that represents a printer.
+						You could have the class implement one interface with methods print(), scan(), etc.
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							interface Printer {
+								fun print()
+								fun scan()
+							}
+
+							class SimplePrinter : Printer { /* ... */ }
+							class MultiPrinter : Printer { /* ... */ }
+						</code>
+					</pre>
+					<p>
+						Or you could have the class implement multiple interfaces, each with a single method.
+						<!--						<br />-->
+						<!--						<br />-->
+						<!--						Simply put, don't clutter your code with stuff you won't use.-->
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							interface Printing {
+								fun print()
+							}
+
+							interface Scanning {
+								fun scan()
+							}
+
+							class SimplePrinter : Printing { /* ... */ }
+							class MultiPrinter : Printing, Scanning { /* ... */ }
+						</code>
+					</pre>
+				</div>
+			</section>
+			<section>
+				<h3>Dependency Inversion Principle</h3>
+				<div class="summary">
+					One should depend upon abstractions, rather than concrete implementations.
+					This way, modules can remain decoupled, leading to systems that are easier to refactor, change, and deploy.
+				</div>
+				<div class="content">
+					This is commonly demonstrated when working with collections.
+					We will also see how this is helpful once we start developing applications using Inversion of Control.
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Inversion of Control</h2>
+			</section>
+			<section>
+				<h3>Inversion of Control (IoC)</h3>
+				<div class="summary">
+					Inversion of Control is a principle in software engineering by which the control is transferred
+					from higher-level components to the lower-level components
+				</div>
+				<div class="content">
+					This allows the higher-level and lower-level components to focus on their functionalities,
+					promotes better decoupling, more flexibility, and easier maintenance.
+				</div>
+			</section>
+			<section>
+				<h3>Dependency Injection</h3>
+				<div class="summary">
+					Dependency Injection is a design pattern that implements IoC.
+					It allows us to inject dependencies into a class, rather than creating them inside the class.
+				</div>
+				<div class="content">
+					<p>
+						There are three types of dependency injection:
+					</p>
+					<ul>
+						<li>Constructor Injection</li>
+						<li>Setter Injection</li>
+						<li>Interface Injection</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Without Injection</h3>
+				<div class="content">
+					<p>
+						This example is not using dependency injection. The Car class is tightly coupled with the ElectricEngine class.
+					</p>
+					<div class="row">
+						<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							fun main() {
+								val car = Car()
+								car.start()
+								car.stop()
+							}
+						</code>
+						</pre>
+						<div class="column">
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									interface Engine {
+										fun on()
+										fun off()
+									}
+								</code>
+							</pre>
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									class ElectricEngine : Engine {
+										override fun on() {
+											println("Electric engine is on")
+										}
+
+										override fun off() {
+											println("Electric engine is off")
+										}
+									}
+								</code>
+							</pre>
+						</div>
+						<div class="column">
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									class Car {
+
+										// engine dependency is tightly coupled with Car class
+										private val engine = ElectricEngine()
+
+										fun start() {
+											engine.on()
+										}
+
+										fun stop() {
+											engine.off()
+										}
+									}
+								</code>
+							</pre>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>Constructor Injection</h3>
+				<div class="content">
+					This example is using constructor injection. The Engine dependency is injected into the Car class through its constructor.
+					<div class="row">
+						<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							fun main() {
+								// First, we need to create an instance of the dependency
+								val engine: Engine = ElectricEngine()
+								// Then we inject the dependency via constructor
+								val car = Car(engine)
+								car.start()
+								car.stop()
+							}
+						</code>
+						</pre>
+						<div class="column">
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									interface Engine {
+										fun on()
+										fun off()
+									}
+								</code>
+							</pre>
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									class ElectricEngine : com.harbourspace.lesson09.di.Engine {
+										override fun on() {
+											println("Electric engine is on")
+										}
+
+										override fun off() {
+											println("Electric engine is off")
+										}
+									}
+								</code>
+							</pre>
+						</div>
+						<div class="column">
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									// dependency is injected via constructor
+									class Car(private val engine: Engine) {
+
+										fun start() {
+											engine.on();
+										}
+
+										fun stop() {
+											engine.off();
+										}
+
+									}
+								</code>
+							</pre>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>Setter Injection</h3>
+				<div class="content">
+					This example is using setter injection. The Engine dependency is injected into the Car class through its setter.
+					<div class="row">
+						<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							fun main() {
+								// First, we need to create an instance of the dependency
+								val engine: Engine = ElectricEngine()
+								// Then we create an instance of the class that has the dependency
+								val car = Car()
+								// Then we inject the dependency via setter
+								car.setEngine(engine)
+								car.start()
+								car.stop()
+							}
+						</code>
+						</pre>
+						<div class="column">
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									interface Engine {
+										fun on()
+										fun off()
+									}
+								</code>
+							</pre>
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									class ElectricEngine : Engine {
+										override fun on() {
+											println("Electric engine is on")
+										}
+
+										override fun off() {
+											println("Electric engine is off")
+										}
+									}
+								</code>
+							</pre>
+						</div>
+						<div class="column">
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									class Car {
+
+										private lateinit var engine: Engine
+
+										// dependency is injected via setter
+										fun setEngine(engine: Engine) {
+											this.engine = engine
+										}
+
+										fun start() {
+											engine.on()
+										}
+
+										fun stop() {
+											engine.off()
+										}
+
+									}
+								</code>
+							</pre>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>Interface Injection</h3>
+				<div class="content">
+					<p>
+						This is just conceptual example fo interface injection.
+						For it to work you need to have some kind of an injector that will inject the dependency into the class that implements the interface.
+					</p>
+					<p>
+						Application frameworks usually provide such injector for us.
+					</p>
+					<p>
+						<em>This is just a conceptual example!</em>
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							@Component
+							class NotificationApplication(
+								private var service: MessageService
+							) {
+
+								fun sendNotifications(msg: String, rec: String) {
+									service.sendMessage(msg, rec)
+								}
+
+							}
+						</code>
+					</pre>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							interface MessageService {
+
+								fun sendMessage(String msg, String rec)
+
+							}
+						</code>
+					</pre>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							@Service
+							class EmailService : MessageService {
+
+								override fun sendMessage(msg: String, rec: String) {
+									// Logic to send email
+									println("Email sent to " + rec + " with Message=" + msg);
+								}
+							}
+						</code>
+					</pre>
+				</div>
+			</section>
+			<section>
+				<h3>Exercise: IoC</h3>
+				<div class="summary">
+					You will work with our fantasy game again (the one with warriors and sorcerers
+					This time, I want you to implement the game using <strong class="highlight">IoC</strong> principle.
+				</div>
+				<div class="content">
+					<p>
+						There will be the following components to our game:
+					</p>
+					<ul>
+						<li>
+							<strong class="highlight">CharacterService</strong> (interface) → Finds a challenger and an opponent using a given strategy.
+						</li>
+						<li>
+							<strong class="highlight">MatchService</strong> (interface) → Handles the battle logic.
+						</li>
+						<li>
+							<strong class="highlight">CharacterRepository</strong> (provided) → Contains a list of characters.
+						</li>
+						<li>
+							<strong class="highlight">CharacterMatchingStrategy</strong> (provided) → Contains the filtering strategy for matching characters.
+						</li>
+						<li>
+							<strong class="highlight">Game</strong> → Uses both services to run a match.
+						</li>
+					</ul>
+					<p>To get you started, you are given the following ...</p>
+				</div>
+				<br />
+				<br />
+				<br />
+				<br />
+				<em>Next ↓</em>
+			</section>
+			<section>
+				<h3>Exercise: IoC</h3>
+				<div class="summary">Character matching strategy</div>
+				<div class="content">
+					<p>
+						The <strong class="highlight">CharacterMatchingStrategy</strong> represents a strategy (filter) for matching characters.
+						The idea here is that you have an object that you can use to represent a predicate that can then be
+						differently implemented in a concrete service implementation.
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							internal data class CharacterMatchingStrategy(
+								val name: String?,
+								val level: CharacterLevel?,
+								val characterClass: String?
+							) {
+								companion object {
+									val ANY = CharacterMatchingStrategy(null, null, null)
+								}
+							}
+						</code>
+					</pre>
+				</div>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<em>Next ↓</em>
+			</section>
+			<section>
+				<h3>Exercise: IoC</h3>
+				<div class="summary">Character repository</div>
+				<div class="content">
+					<p>
+						The <strong class="highlight">CharacterRepository</strong> is an object representing a database of characters.
+						In real application, we would have a database, but for this exercise, we will use a simple object.
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							internal object CharacterRepository {
+
+								private val harryPotterCharacters = listOf(
+									Sorcerer(name = "Harry Potter", health = 100, attackPower = 40, mana = 30, healingPower = 30, level = CharacterLevel.LEVEL_1), // Balanced, more durable
+									Sorcerer(name = "Hermione Granger", health = 90, attackPower = 40, mana = 40, healingPower = 30, level = CharacterLevel.LEVEL_1), // High mana for tactical advantage
+									Sorcerer(name = "Ron Weasley", health = 120, attackPower = 50, mana = 20, healingPower = 10, level = CharacterLevel.LEVEL_1), // Higher health for tanking
+									Sorcerer(name = "Severus Snape", health = 80, attackPower = 60, mana = 30, healingPower = 30, level = CharacterLevel.LEVEL_1), // Strong attack, slightly higher health
+									Sorcerer(name = "Albus Dumbledore", health = 90, attackPower = 40, mana = 40, healingPower = 30, level = CharacterLevel.LEVEL_1), // Well-rounded, high healing power
+									Sorcerer(name = "Lord Voldemort", health = 80, attackPower = 80, mana = 10, healingPower = 30, level = CharacterLevel.LEVEL_1), // Powerful, but needs more survival
+									Sorcerer(name = "Minerva McGonagall", health = 100, attackPower = 40, mana = 30, healingPower = 30, level = CharacterLevel.LEVEL_1), // Balanced
+									Sorcerer(name = "Bellatrix Lestrange", health = 80, attackPower = 70, mana = 20, healingPower = 30, level = CharacterLevel.LEVEL_1), // Aggressive, but not overpowered
+									Sorcerer(name = "Draco Malfoy", health = 100, attackPower = 40, mana = 30, healingPower = 30, level = CharacterLevel.LEVEL_1), // Slightly more balanced
+									Sorcerer(name = "Neville Longbottom", health = 130, attackPower = 30, mana = 10, healingPower = 30, level = CharacterLevel.LEVEL_1), // Tanky with healing ability
+								)
+
+								private val starWarsCharacters = listOf(
+									Warrior(name = "Luke Skywalker", health = 110, attackPower = 40, stamina = 20, defensePower = 30, level = CharacterLevel.LEVEL_1), // Balanced, well-rounded
+									Warrior(name = "Yoda", health = 80, attackPower = 30, stamina = 50, defensePower = 40, level = CharacterLevel.LEVEL_1), // High mana, strategic healer
+									Warrior(name = "Han Solo", health = 120, attackPower = 40, stamina = 10, defensePower = 30, level = CharacterLevel.LEVEL_1), // Tanky and reliable
+									Warrior(name = "Darth Vader", health = 100, attackPower = 60, stamina = 10, defensePower = 30, level = CharacterLevel.LEVEL_1), // High health and power, needs healing
+									Warrior(name = "Obi-Wan Kenobi", health = 100, attackPower = 40, stamina = 30, defensePower = 30, level = CharacterLevel.LEVEL_1), // Strong defense and healing
+									Warrior(name = "Emperor Palpatine", health = 80, attackPower = 80, stamina = 10, defensePower = 30, level = CharacterLevel.LEVEL_1), // Strong attack, low healing
+									Warrior(name = "Mace Windu", health = 110, attackPower = 40, stamina = 20, defensePower = 30, level = CharacterLevel.LEVEL_1), // Well-rounded with decent attack
+									Warrior(name = "Darth Maul", health = 90, attackPower = 60, stamina = 20, defensePower = 30, level = CharacterLevel.LEVEL_1), // Fast and aggressive, needs support
+									Warrior(name = "Kylo Ren", health = 100, attackPower = 50, stamina = 20, defensePower = 30, level = CharacterLevel.LEVEL_1), // Balanced with raw power
+									Warrior(name = "Finn", health = 130, attackPower = 20, stamina = 10, defensePower = 40, level = CharacterLevel.LEVEL_1), // High health and resilience, strategic healing
+								)
+
+								fun getCharacters() = harryPotterCharacters + starWarsCharacters
+
+							}
+						</code>
+					</pre>
+				</div>
+				<em>Next ↓</em>
+			</section>
+			<section>
+				<h3>Exercise: IoC</h3>
+				<!--				<div class="summary">-->
+				<!--					These are the interfaces you need to implement ...-->
+				<!--				</div>-->
+				<div class="content">
+					<ol>
+						<li>
+							<strong class="highlight">Implement CharacterService interface:</strong>
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									internal interface CharacterService {
+										fun findChallenger(strategy: CharacterMatchingStrategy? = null): Character
+										fun findOpponent(challenger: Character, strategy: CharacterMatchingStrategy? = null): Character
+									}
+								</code>
+							</pre>
+							<ul style="font-size: 70%">
+								<li>Create a class that implements <code class="inline">CharacterService</code> (for example <code class="inline">RandomCharacterService</code>).</li>
+								<li>Use <code class="inline">findChallenger()</code> to select random characters.</li>
+								<li>Ensure that <code class="inline">findOpponent</code> does not return the same character as the challenger.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Implement MatchService interface:</strong>
+							<pre>
+								<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+									internal interface MatchService {
+										fun match(rounds: Int, matchingStrategy: CharacterMatchingStrategy? = null): MatchResult
+									}
+								</code>
+							</pre>
+							<ul style="font-size: 70%">
+								<li>Create a class that implements <code class="inline">MatchService</code> (for example `RandomMatchService`).</li>
+								<li>It should take a <code class="inline">CharacterService</code> as a constructor parameter.</li>
+								<li>Call <code class="inline">CharacterService</code> to get a challenger and an opponent.</li>
+								<li>Simulate a match and return a <code class="inline">MatchResult</code>.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Create a main function:</strong>
+							<ul style="font-size: 70%">
+								<li>Instantiate your services and pass dependencies via constructors.</li>
+								<li>Run the match and get results.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Bonus Challenge: Implement the a factory class</strong>
+							<ul style="font-size: 70%">
+								<li>A factory class is a static class (object) that creates instances of other classes.</li>
+								<li>You can create a factory class to create a preset game with a specific <code class="inline">MatchService</code> and <code class="inline">CharacterService</code>.</li>
+								<li>The factory class should return a <code class="inline">MatchService</code> instance.</li>
+							</ul>
+						</li>
+					</ol>
+				</div>
+				<em>Next ↓</em>
+			</section>
+			<section>
+				<h3>Exercise: IoC</h3>
+				<div class="content">
+					<p>
+						After completing this exercise, your program should:
+					</p>
+					<ul>
+						<li>✅ Successfully match two characters for battle.</li>
+						<li>✅ Use <strong class="highlight">constructor injection</strong> to provide dependencies.</li>
+						<li>✅ Follow <strong class="highlight">IoC principles</strong>, where the <code class="inline">MatchService</code> does not directly create dependencies.</li>
+					</ul>
+					<p>
+						The main function can look something like this:
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							fun main() {
+								val game = Game(
+									matchService = RandomMatchService(
+										characterService = RandomCharacterService()
+									)
+								)
+								game.playMatch(20)
+							}
+						</code>
+					</pre>
+					<p><strong class="highlight">Bonus Challenge:</strong></p>
+					<p>
+						Allow users to specify a <code class="inline">CharacterMatchingStrategy</code>
+						to filter characters based on their level or name.
+					</p>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Functional Programming</h2>
+			</section>
+			<section>
+				<h3>Functional Programming</h3>
+				<div class="summary">
+					So far, we have been using mostly <strong>imperative programming</strong> style.
+					<br />
+					There is another programming paradigm called <strong>functional programming</strong>.
+				</div>
+				<div class="content">
+					<p>
+						The <strong class="highlight">imperative programing</strong> style is characterized by explicit statements that change a program's state.
+					</p>
+					<p>
+						<strong class="highlight">Functional programming</strong> is a programming paradigm where programs are constructed by applying and composing functions.
+						It emphasizes the use of <strong>pure functions</strong> that avoid changing state and mutable data.
+					</p>
+					<p>
+						<strong class="highlight">Pure function</strong> is a function where the return value is only determined by its input values, without observable <strong>side effects</strong>.
+					</p>
+					<p>
+						<strong class="highlight">Side effects</strong> are changes in the state of the program that are observable outside the called function other than the return value.
+					</p>
+					<p>
+						Kotlin has by design very good support for functional programming,
+						and we have already seen some examples of it.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>Principles of functional programming</h3>
+				<div class="content">
+					<ul>
+						<li>
+							<strong>Immutability</strong>
+							<ul>
+								<li>Once an object is created, it cannot be changed.</li>
+								<li>Instead of changing the object, a new object is created with the new value.</li>
+							</ul>
+						</li>
+						<li>
+							<strong>Pure functions</strong>
+							<ul>
+								<li>Functions that always return the same result for the same input.</li>
+								<li>They do not produce or rely on side effects.</li>
+							</ul>
+						</li>
+						<li>
+							<strong>First-class functions</strong>
+							<ul>
+								<li>Functions are treated as first-class citizens, meaning they can be passed as arguments to other functions, returned as values from other functions, and assigned to variables.</li>
+							</ul>
+						</li>
+						<li>
+							<strong>Higher-order functions</strong>
+							<ul>
+								<li>Functions that take other functions as arguments or return them as results.</li>
+							</ul>
+						</li>
+						<li>
+							<strong>Referential transparency</strong>
+							<ul>
+								<li>It means that a function will always return the same result for the same input.</li>
+								<li>This means that the function call can be replaced with its corresponding value without changing the program’s behavior.</li>
+
+							</ul>
+						</li>
+						<li>
+							There may be other principles mentioned such as <strong>Recursion</strong> or <strong>Functional composition</strong>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Functional Programming</h3>
+				<div class="summary">
+					Example of a pure function and a function with side effects.
+				</div>
+				<div class="content">
+					<p>
+						Function with side effects:
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							var counter = 0
+
+							fun unPureFunction(increment: Int): Int {
+								return counter += increment
+							}
+						</code>
+					</pre>
+					<p>
+						Pure function:
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							fun pureFunction(counter: Int, increment: Int): Int {
+								return counter + increment
+							}
+						</code>
+					</pre>
+				</div>
+			</section>
+			<section>
+				<h3>Function as an argument</h3>
+				<div class="summary">
+					You can pass a function as an argument to another function.
+				</div>
+				<div class="content">
+					<p>
+						Here is an example of a function that takes a function with a single parameter and returns an integer.
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							fun execute(input: String, function: (String) -> Int): Int {
+								return function(input)
+							}
+						</code>
+					</pre>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							val result = execute("Hello Function!") { input ->
+								println("Got input: $input")
+								input.length
+							}
+
+							println(result)
+						</code>
+					</pre>
+					<p>
+						Here is an example of a function that takes a function with two parameters and returns a boolean.
+					</p>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							fun execute(input1: String, input2: Double, function: (String, Double) -> Boolean): Boolean {
+								return function(input1, input2)
+							}
+						</code>
+					</pre>
+					<pre>
+						<code data-trim data-noescape data-line-numbers class="hljs kotlin">
+							val result2 = execute("12.34", 12.34) { p1, p2 ->
+								p1.toDouble() == p2
+							}
+
+							println(result2)
+						</code>
+					</pre>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Design Patterns</h2>
+			</section>
+			<section>
+				<h3>Design Patterns</h3>
+				<div class="summary">
+					In software engineering, a design pattern is a general repeatable solution to a commonly occurring
+					problem in software design. They are best practices that the programmer can use to solve common problems when designing an application or system.
+				</div>
+				<div class="content">
+					<p>As a simplification, we can divide design patterns into 3 categories ...</p>
+					<ul>
+						<li>
+							<strong>Creational Design Patterns</strong>
+							deal with object creation mechanisms, helping with complexities of object creation and providing convenient ways to do so.
+							<br />
+							<sub>Builder Pattern, Singleton Pattern, Factory Pattern, Abstract Factory Pattern, Prototype Pattern ...</sub>
+							<br />
+							<br />
+						</li>
+						<li>
+							<strong>Structural Design Patterns</strong>
+							concern with composition of classes and objects which form larger structures.
+							<br />
+							<sub>Decorator Pattern, Adapter Pattern, Proxy Pattern, Composite Pattern, Bridge Pattern ...</sub>
+							<br />
+							<br />
+						</li>
+						<li>
+							<strong>Behavioral Design Patterns</strong>
+							are specifically concerned with communication between objects, how they interact, and distribute the work.
+							<br />
+							<sub>Observer Pattern, Strategy Pattern, Iterator Pattern, Command Pattern, Template Method Pattern ...</sub>
+						</li>
+					</ul>
+					<hr />
+					<p>
+						I will not go into detail, but I encourage you <a href="https://en.wikipedia.org/wiki/Software_design_pattern">to read about them</a>.
+					</p>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section>
+				<section data-background-gradient="var(--kotlin-gradient)">
+					<h2>Practice</h2>
+					<em>↓</em>
+				</section>
+				<section>
+					<div style="font-size: 200%">
+						<em>Catch up on all the lessons!</em><br />
+						<em>Make sure you have your fantasy game model ready for next lesson.</em>
+					</div>
+				</section>
+			</section>
+		</section>
+	</div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+	// More info about initialization & config:
+	// - https://revealjs.com/initialization/
+	// - https://revealjs.com/config/
+	Reveal.initialize({
+		hash: true,
+
+		// Learn about plugins: https://revealjs.com/plugins/
+		plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reveal.js + Kotlin Playground</title>
+
+    <!-- Reveal.js core styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css">
+
+    <!-- Load the Kotlin Playground -->
+    <script src="https://unpkg.com/kotlin-playground@1" data-selector="code"></script>
+</head>
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <!-- Slide 1 -->
+        <section>
+            <h2>Welcome to Kotlin</h2>
+            <p>Let's see some Kotlin code in action!</p>
+        </section>
+
+        <!-- Slide 2: Executable Kotlin Code -->
+        <section>
+            <h2>Interactive Kotlin Example</h2>
+            <pre><code class="language-kotlin">
+fun main() {
+    println("Hello, Kotlin and Reveal.js!")
+}
+            </code></pre>
+        </section>
+
+        <!-- Slide 3: Another Kotlin Example -->
+        <section>
+            <h2>Another Example</h2>
+            <pre><code class="language-kotlin">
+fun greet(name: String) {
+    println("Hello, $name!")
+}
+
+fun main() {
+    greet("World")
+}
+            </code></pre>
+        </section>
+    </div>
+</div>
+
+<!-- Reveal.js Core -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+
+<script>
+    // Initialize Reveal.js
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        slideNumber: true,
+        history: true,
+        center: true
+    });
+
+    // Wait for the Reveal.js presentation to be fully initialized
+    Reveal.on('ready', function(event) {
+        console.log('Reveal.js is ready.');
+        // Manually trigger Kotlin Playground to ensure it works
+        KotlinPlayground({selector: 'code.language-kotlin'});
+    });
+
+    // Re-initialize the Kotlin Playground after every slide change
+    Reveal.on('slidechanged', function(event) {
+        console.log('Slide changed, re-initializing Kotlin Playground.');
+        KotlinPlayground({selector: 'code.language-kotlin'});
+    });
+</script>
+
+</body>
+</html>

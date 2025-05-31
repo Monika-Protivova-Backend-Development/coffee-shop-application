@@ -1,0 +1,1251 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="./dist/reset.css">
+	<link rel="stylesheet" href="./dist/reveal.css">
+	<link rel="stylesheet" href="./dist/theme/kotlin.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="./plugin/highlight/vs.css">
+</head>
+<body>
+<div class="reveal" >
+	<div class="slides">
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<i>Week 1 | Lesson 1</i>
+				<h1>Introduction to Backend Development</h1>
+				<em>in Kotlin</em><br />
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Why Kotlin?</h2>
+			</section>
+			<section>
+				<h3>Why Kotlin?</h3>
+				<div class="summary">
+					<p>
+						<strong class="highlight">Java</strong> has been the dominant language for backend development for many years.
+						<br />
+						<strong class="highlight">Kotlin</strong> is considered a modern alternative to Java.
+					</p>
+				</div>
+				<div class="content">
+					<p>
+						Kotlin is fully interoperable with Java, which means that you develop and deploy Kotlin applications
+						in the same way as Java applications, and you can use existing Java libraries and frameworks with Kotlin.
+					</p>
+					<p>
+						Both Java and Kotlin are a solid choice for backend development because of their design:
+					</p>
+					<ul>
+						<li>Statically typed languages, which means developers can catch many errors at compile time.</li>
+						<li>Run on the Java Virtual Machine (JVM), which means that they can run on any platform that supports it.</li>
+						<li>Can be containerized easily and is easy to deploy and scale in cloud environments.</li>
+						<li>Have a large ecosystem of libraries and frameworks that can be used to build applications.</li>
+						<li>Have a strong community and support from major companies (e.g., Google for Android, JetBrains for Kotlin).</li>
+						<li>There is some performance overhead with JVM, but it is generally negligible for most applications and JVM can be tuned for performance.</li>
+					</ul>
+					<p>
+						<strong>
+							What we will learn in this course is not specific to Kotlin and can be applied to any backend language.
+						</strong>
+					</p>
+					<br />
+					<p>
+						<em>
+							Also, an honest answer is that it is the language I know best, and therefore I can teach it best.
+						</em>
+					</p>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Backend Development</h2>
+			</section>
+			<section>
+				<h3>What is "Backend"?</h3>
+				<div class="summary">
+					Backend commonly refers to the server-side of an application, which is a process that runs on a server
+					and handles core logic, data management, user authentication, business rules, and integrations with other systems.
+				</div>
+				<div class="content">
+					<blockquote>
+						It handles things that can’t, or shouldn’t, happen in the user’s browser or app directly.
+					</blockquote>
+					<p>
+						A typical backend of an application consists of several components that work together to provide the functionality.
+					</p>
+					<ul>
+						<li>
+							<strong class="highlight">Server</strong><br />
+							The machine or cloud service that runs the backend code.
+						</li>
+						<li>
+							<strong class="highlight">Application Logic</strong><br />
+							The code that implements the business rules and processes.
+						</li>
+						<li>
+							<strong class="highlight">Database</strong><br />
+							Where data is stored persistently (e.g., user accounts, application state).
+						</li>
+						<li>
+							<strong class="highlight">APIs</strong><br />
+							Interfaces for clients (web, mobile, etc.) to interact with the backend.
+						</li>
+						<li>
+							<strong class="highlight">Security</strong><br />
+							Mechanisms for authentication and authorization and data protection.
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Why Applications Need a Backend?</h3>
+				<div class="summary">
+					Most applications that require user accounts, data storage or real-time interactions will have a backend.
+				</div>
+				<div class="content">
+					<p>
+						What is handled by the backend?
+					</p>
+					<ol>
+						<li>
+							For multi-platform applications, the backend provides a
+							common foundation that all clients (web, mobile, desktop)
+							can rely on for consistent behavior and data access.
+						</li>
+						<li>
+							For multi-user applications, the backend allows user
+							interactions, roles, data sharing, and real-time updates.
+						</li>
+						<li>
+							Having a backend allows applications to scale,
+							manage resources and maintain security across different
+							devices and users.
+						</li>
+					</ol>
+					<p>
+						Some applications may not need a backend:
+					</p>
+					<ul>
+						<li>Simple static websites</li>
+						<li>Standalone tools, calculators or utilities</li>
+						<li>Local-only games</li>
+					</ul>
+					<p>
+						But even these can evolve to require one — for analytics, syncing, personalization, or collaboration.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>What Kinds of Applications Typically Have a Backend?</h3>
+				<div class="summary">
+					And what do they use it for?
+				</div>
+				<div class="content">
+					<table>
+						<thead>
+						<tr>
+							<th>Application Type</th>
+							<th>Example</th>
+							<th>Backend Role</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Web Apps</td>
+							<td>E-commerce site, dashboard</td>
+							<td>Data APIs, authentication, payment handling</td>
+						</tr>
+						<tr>
+							<td>Mobile Apps</td>
+							<td>Messaging, social, travel apps</td>
+							<td>Sync data, store media, push notifications</td>
+						</tr>
+						<tr>
+							<td>Desktop Apps</td>
+							<td>Collaboration tools, IDEs</td>
+							<td>Real-time sync, cloud storage, user accounts</td>
+						</tr>
+						<tr>
+							<td>IoT / Smart Devices</td>
+							<td>Smart lights, wearables</td>
+							<td>Device management, remote control, firmware updates</td>
+						</tr>
+						<tr>
+							<td>Games</td>
+							<td>Online multiplayer games</td>
+							<td>Matchmaking, scoring, anti-cheat, player data</td>
+						</tr>
+						<tr>
+							<td>APIs / Developer Tools</td>
+							<td>Stripe, Firebase, OpenAI</td>
+							<td>Pure backend — no UI, only serves data or actions to other apps</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Responsibilities of Backend</h2>
+			</section>
+			<section>
+				<h3>Responsibilities of Backend</h3>
+				<div class="summary">
+					What does the backend do?
+				</div>
+				<div class="content">
+					<ul>
+						<li>
+							<strong class="highlight">Business Logic</strong>
+							<br />
+							Enforcing rules and workflows (e.g., checking if a user can book a ticket).
+							<br />
+							<br />
+						</li>
+						<li>
+							<strong class="highlight">Data Persistence</strong>
+							<br />
+							Storing and retrieving user or application data (e.g., accounts, messages, files, transactions).
+							<br />
+							<br />
+						</li>
+						<li>
+							<strong class="highlight">Multi-user Coordination</strong>
+							<br />
+							Managing interactions between different users and devices.
+							<br />
+							<br />
+						</li>
+						<li>
+							<strong class="highlight">Security</strong>
+							<br />
+							Safely managing sensitive operations (e.g., password handling, access control).
+							<br />
+							<br />
+						</li>
+						<li>
+							<strong class="highlight">Interfacing with Other Services</strong>
+							<br />
+							Talking to external APIs (e.g., payment gateways, recommendation engines).
+							<br />
+							<br />
+						</li>
+						<li>
+							<strong class="highlight">Performance and Resource Management</strong>
+							<br />
+							Offloading heavy computation or long-running processes.
+							<br />
+							<br />
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Business Logic</h3>
+				<div class="summary">
+					<!--					Business Logic is the set of rules and processes that define how an application operates.-->
+					Business Logic is a set of rules, calculations and workflows that determine how data
+					is processed to fulfill the business requirements.
+				</div>
+				<div class="content">
+					<p>
+						<strong class="highlight">Business Logic</strong> refers to the fact that this code is specific
+						to the business domain (e.g., e-commerce, healthcare, finance, entertainment, ...).
+					</p>
+					<p>
+						It is the part of the application that defines how the application behaves and operates
+						to fulfill the business requirements (to address customer needs and problems).
+					</p>
+					<p>
+						It may include rules for processing data, calculations, workflows based on user actions,
+						and interactions with other systems or services.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>Data Persistence</h3>
+				<div class="summary">
+					Data persistence is the ability to store, retrieve and update application data.
+				</div>
+				<div class="content">
+					<p>
+						Typically, this is done using a database which itself is an external resource that the backend interacts with.
+					</p>
+					<p>
+						The backend is responsible for managing the connection to the database, executing queries,
+						and ensuring data integrity in accordance the business rules.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>Multi-user Coordination</h3>
+				<div class="summary">
+					Multi-user coordination is the ability to manage interactions between different users and devices.
+				</div>
+				<div class="content">
+					<p>
+						This is especially important in applications that allow multiple users to interact with each other,
+						such as social networks, messaging apps, or collaborative tools.
+					</p>
+					<p>
+						The backend is responsible for managing user sessions, handling concurrent requests, and ensuring
+						that users can interact with each other in a consistent and reliable way.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>Security</h3>
+				<div class="summary">
+					Security involves protecting sensitive data and operations.
+				</div>
+				<div class="content">
+					<blockquote>
+						Security is a critical aspect of backend development.
+					</blockquote>
+					<p>
+						The backend is responsible for implementing security measures such as user authentication, authorization,
+						data encryption, and protection against common vulnerabilities (e.g., SQL injection, cross-site scripting).
+					</p>
+					<p>
+						User <strong class="highlight">authentication</strong> is the process of verifying the identity of a user.
+					</p>
+					<p>
+						User <strong class="highlight">authorization</strong> is the process of determining what actions a user is allowed to perform.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>Interfacing with Other Services</h3>
+				<div class="summary">
+					Interfacing with other services allows the backend to extend its functionality by third party integrations.
+				</div>
+				<div class="content">
+					<p>
+						Quite often, the backend needs to interact with external services or APIs to provide additional functionality,
+						such as payment processing, email notifications, or data enrichment.
+					</p>
+					<p>
+						The backend is responsible for managing these integrations, handling API requests and responses,
+						and ensuring that the data exchanged with external services is consistent and secure.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>Performance and Resource Management</h3>
+				<div class="summary">
+					Backend applications often need to handle large volumes of data, process complex calculations, or perform long-running tasks.
+				</div>
+				<div class="content">
+					<p>
+						The backend is responsible for optimizing performance, managing resources efficiently,
+						and ensuring that the application can scale to handle increased the load without compromising user experience.
+					</p>
+					<p>
+						This may involve techniques such as caching, load balancing, asynchronous processing,
+						and using distributed systems.
+					</p>
+					<p>
+						A well-designed backend should be able to be scaled horizontally (adding more servers)
+						or vertically (upgrading existing servers)
+					</p>
+					<p>
+						Also, the backend should be designed to be resilient and fault-tolerant, so that it can recover from failures quickly and without losing data or disrupting user experience.
+					</p>
+					<p>
+						Backend should also provide metrics and logging to monitor performance, detect issues, and analyze usage patterns.
+					</p>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Application Architecture</h2>
+			</section>
+			<section>
+				<h3>Common Architecture Patterns</h3>
+				<div class="summary">
+					There are several common architecture patterns that are used in the development of software applications.
+
+				</div>
+				<div class="content">
+					<p>
+						These are high-level application architecture patterns used to define the structure of the application and the way in which the different components of the application interact with each other.
+					</p>
+					<p>
+						<strong>Some</strong> of the most common architecture patterns include:
+					</p>
+					<ul>
+						<li>Monolithic Architecture</li>
+						<li>Microservice Architecture</li>
+						<li>Serverless Architecture</li>
+						<li>Event-Driven Architecture</li>
+						<li>API Gateway Architecture</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Monolithic Architecture</h3>
+				<div class="summary">
+					Monolithic architecture is a software architecture pattern where all the components of the application run as a single unit.
+				</div>
+				<div class="content">
+					<p>
+						Monolithic architecture tends to be tightly coupled, which can make it difficult to scale and maintain the application over time.
+					</p>
+					<ul>
+						<li>
+							<strong class="highlight">When to use</strong>
+							<ul>
+								<li>Small projects or MVPs.</li>
+								<li>Early-stage startups.</li>
+								<li>Teams with limited resources.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Pros</strong>
+							<ul>
+								<li>Easier debugging with one codebase.</li>
+								<li>
+									Simpler to develop and deploy. **
+									<sub>In terms of needing simper infrastructure.</sub>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Cons</strong>
+							<ul>
+								<li>Difficult to scale certain parts independently.</li>
+								<li>Harder to manage as the codebase grows.</li>
+								<li>Limited error resilience.</li>
+								<li>Difficult to develop and deploy. **
+									<sub>Monoliths can have many dependencies to for developers, that may mean a lot of setup.</sub>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Microservice Architecture</h3>
+				<div class="summary">
+					An architecture that decomposes the system into smaller, (relatively) independent services.
+				</div>
+				<div class="content">
+					<ul>
+						<li>
+							<strong class="highlight">When to use</strong>
+							<ul>
+								<li>Large, complex systems.</li>
+								<li>Teams that are distributed or domain-focused.</li>
+								<li>Scalability is a top priority.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Pros</strong>
+							<ul>
+								<li>Independent scaling and deployment.</li>
+								<li>Fault isolation (failures in one service don't affect others).</li>
+								<li>Easier to adopt different tech stacks per service.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Cons</strong>
+							<ul>
+								<li>Complex to manage (e.g., inter-service communication).</li>
+								<li>Potential for high latency between services.</li>
+								<li>Requires solid observability (monitoring, logging).</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Pitfalls</strong>
+							<ul>
+								<li><strong>Be aware of distributed monoliths!</strong></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Serverless Architecture</h3>
+				<div class="summary">
+					Uses cloud-managed services where you write and deploy functions instead of managing infrastructure.
+				</div>
+				<div class="content">
+					<ul>
+						<li>
+							<strong class="highlight">When to use</strong>
+							<ul>
+								<li>Event-driven systems (e.g., IoT data, notifications).</li>
+								<li>Applications with unpredictable or spiky traffic.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Pros</strong>
+							<ul>
+								<li>Automatic scaling.</li>
+								<li>Reduced operational complexity.</li>
+								<li>Pay-per-use model.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Cons</strong>
+							<ul>
+								<li>Cold-start latency.</li>
+								<li>Vendor lock-in risks.</li>
+								<li>Debugging and monitoring can be more complex.</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Event-Driven Architecture</h3>
+				<div class="summary">
+					Systems that react to and propagate events across services (e.g., Kafka, RabbitMQ).
+				</div>
+				<div class="content">
+					<ul>
+						<li>
+							<strong class="highlight">When to use</strong>
+							<ul>
+								<li>Systems with high-frequency event generation.</li>
+								<li>IoT and real-time analytics.</li>
+								<li>Applications with loosely coupled services.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Pros</strong>
+							<ul>
+								<li>Real-time processing and responsiveness.</li>
+								<li>Highly scalable and decoupled.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Cons</strong>
+							<ul>
+								<li>Requires careful event design to avoid excessive coupling.</li>
+								<li>Complex debugging and replaying of events.</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>API Gateway Architecture</h3>
+				<div class="summary">
+					Centralizes all API traffic, often for microservices and serverless backends.
+				</div>
+				<div class="content">
+					<ul>
+						<li>
+							<strong class="highlight">When to use</strong>
+							<ul>
+								<li>Systems with multiple backend services.</li>
+								<li>Teams needing centralized authentication, logging, or throttling.</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Pros</strong>
+							<ul>
+								<li>Centralized management for APIs.</li>
+								<li>Reduced cross-cutting concerns (e.g., rate limiting, CORS).</li>
+							</ul>
+						</li>
+						<li>
+							<strong class="highlight">Cons</strong>
+							<ul>
+								<li>Can become a single point of failure.</li>
+								<li>Latency and complexity if overloaded.</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>How to decide?</h3>
+				<div class="content content-center content-100">
+					<p class="fragment fade-in">You will get it wrong!</p>
+					<p class="fragment fade-in">And you will re-do it.</p>
+					<p class="fragment fade-in">And you will still get it wrong again.</p>
+					<p class="fragment fade-in">And then you will re-do it again.</p>
+					<p class="fragment fade-in">And it will never be perfect.</p>
+					<p class="fragment fade-in">And that's OK.</p>
+					<br />
+					<p class="fragment fade-in" data-transition="fade-in">Embrace failure, learn from it, and go on.</p>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>12-Factor Applications</h2>
+			</section>
+			<section>
+				<h3>12-Factor Applications</h3>
+				<div class="summary">
+					The 12-Factor App is a methodology for building modern web applications that are scalable, maintainable, and portable.
+				</div>
+				<div class="content">
+					<p>
+						It was introduced by Heroku in 2011 and has become a widely accepted
+						best practice for building cloud-native applications. Although it's been around for a while,
+						it remains relevant (with some updates). Most of the principles have become industry standards.
+					</p>
+					<p>
+						<strong>The 12 factors are:</strong>
+					</p>
+					<div class="row">
+						<div class="column">
+							<ol>
+								<li>Codebase</li>
+								<li>Dependencies</li>
+								<li>Config</li>
+								<li>Backing Services</li>
+								<li>Build, Release, Run</li>
+								<li>Processes</li>
+							</ol>
+						</div>
+						<div class="column">
+							<ol start="7">
+								<li>Port Binding</li>
+								<li>Concurrency</li>
+								<li>Disposability</li>
+								<li>Dev/Prod Parity</li>
+								<li>Logs</li>
+								<li>Admin Processes</li>
+							</ol>
+						</div>
+					</div>
+					<blockquote>
+						We will go through each of these briefly and then discuss how they apply to Kotlin applications as we build our backend.
+						<br />
+						You don't need to memorize them all right now, just be aware of them.
+					</blockquote>
+				</div>
+			</section>
+			<section>
+				<h3>1. Codebase</h3>
+				<div class="summary">
+					One codebase tracked in revision control, many deploys.
+				</div>
+				<div class="content">
+					<p>
+						This means that there should be a single codebase for the application, which is stored in a version control system (e.g., Git).
+						The same codebase can be deployed to multiple environments (e.g., development, staging, production).
+					</p>
+					<p>
+						This allows for easier collaboration, code review, and deployment processes.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>2. Dependencies</h3>
+				<div class="summary">
+					Explicitly declare and isolate dependencies.
+				</div>
+				<div class="content">
+					<p>
+						This means that all dependencies of the application should be explicitly declared
+						in a dependency management file (e.g., <code class="inline">build.gradle.kts</code> for Kotlin).
+						The application should not rely on any implicit dependencies that are not declared.
+					</p>
+					<p>
+						This allows for easier management of dependencies and ensures that the application can be built
+						and run consistently across different environments.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>3. Config</h3>
+				<div class="summary">
+					Store configuration in the environment.
+				</div>
+				<div class="content">
+					<p>
+						This means that all configuration settings for the application should be stored in environment variables
+						or configuration files that are not part of the codebase.
+						This allows for easier management of configuration settings and ensures that sensitive information (e.g., API keys, database credentials)
+						is not stored in the codebase.
+					</p>
+					<p>
+						This also allows for different configurations to be used in different environments (e.g., development, staging, production).
+					</p>
+					<p>
+						Secret management tools (e.g., HashiCorp Vault, AWS Secrets Manager) can be used to manage sensitive configuration settings securely.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>4. Backing Services</h3>
+				<div class="summary">
+					Treat backing services as attached resources.
+				</div>
+				<div class="content">
+					<p>
+						This means that all external services that the application relies on (e.g., databases, message queues, caching systems)
+						should be treated as attached resources that can be easily swapped out or replaced.
+					</p>
+					<p>
+						This allows for easier management of external services and ensures that the application can be deployed
+						to different environments without being tightly coupled to specific services.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>5. Build, Release, Run</h3>
+				<div class="summary">
+					Strictly separate build and run stages.
+				</div>
+				<div class="content">
+					<p>
+						This means that the build process (compiling code, packaging dependencies) should be separate from the release process (deploying the application).
+						The build process should produce a deployable artifact (e.g., a JAR file) that can be deployed to different environments.
+					</p>
+					<p>
+						This allows for easier management of the deployment process and ensures that the same artifact can be deployed to different environments.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>6. Processes</h3>
+				<div class="summary">
+					Execute the app as one or more stateless processes.
+				</div>
+				<div class="content">
+					<p>
+						This means that the application should be designed to run as one or more stateless processes that can be easily scaled horizontally.
+						The application should not rely on any local state not stored in a backing service (e.g., database, cache).
+					</p>
+					<p>
+						This allows for easier scaling and ensures that the application can handle increased the load without losing state.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>7. Port Binding</h3>
+				<div class="summary">
+					Export services via port binding.
+				</div>
+				<div class="content">
+					<p>
+						This means that the application should be designed to run as a self-contained service that listens on a specific port.
+						The application should not rely on any external web server or container to run.
+					</p>
+					<p>
+						This allows for easier deployment and ensures that the application can be run in different environments without relying on external infrastructure.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>8. Concurrency</h3>
+				<div class="summary">
+					Scale out via the process model.
+				</div>
+				<div class="content">
+					<p>
+						This means that the application should be designed to handle concurrent requests and scale out by running multiple instances of the application.
+						The application should not rely on any shared state between instances.
+					</p>
+					<p>
+						This allows for easier scaling and ensures that the application can handle increased the load without losing performance.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>9. Disposability</h3>
+				<div class="summary">
+					Enable fast startup and graceful shutdown.
+				</div>
+				<div class="content">
+					<p>
+						This means that the application should be designed to start up quickly and shut down gracefully.
+						The application should not rely on any long-running processes or background tasks that can block the shutdown process.
+					</p>
+					<p>
+						This allows for easier deployment and ensures that the application can be restarted quickly in case of failures.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>10. Dev/Prod Parity</h3>
+				<div class="summary">
+					Maintain development, staging, and production parity.
+				</div>
+				<div class="content">
+					<p>
+						This means that the development, staging, and production environments should be as similar as possible.
+						The application should not rely on any environment-specific configurations or dependencies.
+					</p>
+					<p>
+						This allows for easier testing and ensures that the application behaves consistently across different environments.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>11. Logs</h3>
+				<div class="summary">
+					Treat logs as event streams.
+				</div>
+				<div class="content">
+					<p>
+						This means that the application should be designed to produce logs that can be easily consumed and processed by external systems.
+						The application should not rely on any local log files or logging infrastructure.
+					</p>
+					<p>
+						This allows for easier monitoring and ensures that the application can be debugged and analyzed in real-time.
+					</p>
+					<p>
+						In modern systems, this rule can be updated to observability, which includes not only logs but also metrics and traces.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>12. Admin Processes</h3>
+				<div class="summary">
+					Run admin/management tasks as one-off processes.
+				</div>
+				<div class="content">
+					<p>
+						This means that the application should be designed to run administrative or management tasks as one-off processes that can be executed independently of the main application.
+						The application should not rely on any long-running administrative processes or background tasks.
+					</p>
+					<p>
+						This allows for easier management and ensures that administrative tasks can be executed without affecting the main application.
+					</p>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Introduction to Java</h2>
+			</section>
+			<section>
+				<h3>Brief history of Java</h3>
+				<div class="summary">
+					Why do we need to talk about Java first?
+				</div>
+				<div class="content" style="text-align: center">
+					<p>
+						While Java and Kotlin are two separate languages, they are closely related.
+						They both run on the Java Virtual Machine (JVM), and they are interoperable.
+						In fact, Kotlin compiles to Java bytecode, which means that it can run on any platform that supports Java.
+						Understanding some basic principles in Java will help you understand Kotlin better.
+					</p>
+					<br />
+					<img src="./img/java.png" alt="Java Logo" style="width: 200px"/>
+					<img src="./img/to-right.png" style="height: 40px; padding: 40px"/>
+					<img src="./img/Kotlin_logo_2021.svg" alt="Kotlin Logo" style="width: 200px; padding-bottom: 40px; padding-top: 40px"/>
+				</div>
+			</section>
+			<section>
+				<h3>Brief history of Java</h3>
+				<div class="content" style="text-align: center">
+					<ul style="text-align: left">
+						<li>Developed by Sun Microsystems</li>
+						<li>Introduced in 1995</li>
+						<li>First version available in 1996</li>
+						<li>Open source since 2007</li>
+						<li>Sun Microsystems was acquired by Oracle in 2010</li>
+					</ul>
+					<div>
+						<img src="./img/java.png" alt="Java Logo" style="width: 200px"/>
+						<img src="./img/to-right.png" style="height: 40px; padding: 40px"/>
+						<img src="./img/Kotlin_logo_2021.svg" alt="Kotlin Logo" style="width: 200px; padding-bottom: 40px; padding-top: 40px"/>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>Key features of Java</h3>
+				<div class="content">
+					<p>
+						<b>Simple</b><br/>
+						<i style="font-size: 80%">easy to learn and use, familiar syntax (based on C++), memory management</i>
+					</p>
+					<p>
+						<b>Object-Oriented</b><br/>
+						<i style="font-size: 80%">everything in Java is an object</i>
+					</p>
+					<p>
+						<b>Platform Independent, Portable, Architecture-Neutral</b><br/>
+						<i style="font-size: 80%">write once, run anywhere (on java virtual machine), compiled to Java byte code, no specific architecture dependent features (for example data types)</i>
+					</p>
+					<p>
+						<b>Multi-Threaded</b><br/>
+						<i style="font-size: 80%">enables concurrent task execution</i>
+					</p>
+					<p>
+						<b>Secure</b><br/>
+						<i style="font-size: 80%">no pointers, runs inside virtual machine, guards against illegal access to resources</i>
+					</p>
+					<p>
+						<b>Robust</b><br/>
+						<i style="font-size: 80%">no pointers, memory management, strong type checking</i>
+					</p>
+					<p>
+						<b>High Performance</b><br/>
+						<i style="font-size: 80%">slower than compiled languages, but fast for interpreted language due java byte code being close to native code</i>
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>Java has two main components ...</h3>
+				<div class="content content-center">
+					<h4>Java Runtime Environment (JRE)</h4>
+					<p>
+						The JRE provides the libraries, the Java Virtual Machine (JVM),
+						and other components needed to run applications written in Java.
+						It does not include developer tools such as compilers and debuggers.
+					</p>
+					<p>
+						<em>As a user, you would use the JRE to run Java programs on your system.</em>
+					</p>
+				</div>
+				<div class="content content-center">
+					<h4>Java Development Kit (JDK)</h4>
+					<p>
+						The JDK includes the JRE as well as a set of development tools for writing and running Java programs.
+						These tools include the Java compiler (javac), an archiver (jar), a documentation generator (javadoc),
+						and other tools needed in Java development.
+					</p>
+					<p>
+						Since open-sourcing, multiple implementations of JDK have existed,
+						including <strong>Oracle JDK</strong>, <strong>OpenJDK</strong>, <strong>Amazon Corretto</strong>, and others.
+					</p>
+					<blockquote>
+						As a programmer, you would use the JDK to develop Java applications and JRE to run them.
+					</blockquote>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Introduction to Kotlin</h2>
+			</section>
+			<section>
+				<h3>What is Kotlin?</h3>
+				<div class="content content-center content-100">
+					<ul>
+						<li>
+							Developed by <a href="https://www.jetbrains.com/">JetBrains</a> and officially released in 2016.
+						</li>
+						<li>
+							Statically-typed programming language that runs on the Java Virtual Machine (JVM).
+						</li>
+						<li>
+							Fully interoperable with Java, which means that you can use Java libraries in Kotlin and vice versa.
+						</li>
+						<li>
+							Designed to improve on Java's shortcomings, and it is considered a modern alternative to Java.
+						</li>
+						<li>
+							It has modern and intuitive syntax, and it is designed to be concise and expressive.
+						</li>
+					</ul>
+					<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png" alt="JetBrains Logo" style="width: 200px"/>
+				</div>
+			</section>
+			<section>
+				<h3>Important features</h3>
+				<div class="content">
+					<ul>
+						<li>
+							<strong class="highlight">Null safety</strong>
+							<span>by distinguishing nullable and non-nullable types</span>
+						</li>
+						<li>
+							<strong class="highlight">Interoperability</strong>
+							<span>with Java, allowing developers to use Java libraries in Kotlin and vice versa</span>
+						</li>
+						<li>
+							<strong class="highlight">Conciseness</strong>
+							<span>reducing boilerplate code and improving readability</span>
+						</li>
+						<li>
+							<strong class="highlight">Coroutines</strong>
+							<span>provide built-in support for coroutines for easy and efficient concurrent programming</span>
+						</li>
+						<li>
+							<strong class="highlight">Extension Functions</strong>
+							<span>allowing you to add new functions to existing classes without modifying their source code</span>
+						</li>
+						<li>
+							<strong class="highlight">Data Classes</strong>
+							<span>providing a concise way to create classes that only hold data</span>
+						</li>
+						<li>
+							<strong class="highlight">Higher-Order Functions and Lambdas</strong>
+							<span>supporting functional programming paradigms</span>
+						</li>
+						<li>
+							<strong class="highlight">Companion Objects</strong>
+							<span>providing a way to create static methods and properties in Kotlin</span>
+						</li>
+						<li>
+							<strong class="highlight">Smart Casts</strong>
+							<span>used to automatically casts types when certain conditions are met</span>
+						</li>
+						<li>
+							<strong class="highlight">Sealed Classes</strong>
+							<span>providing a way to restrict inheritance</span>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h3>Kotlin Releases: Major Versions</h3>
+				<div class="content" style="font-size: 70%">
+					<ul>
+						<li><strong>2010:</strong> Project Kotlin was born. JetBrains unveiled Project Kotlin, a new language for the JVM, which had been under development for a year.</li>
+						<li><strong>2012:</strong> JetBrains open sourced Project Kotlin. The company has set up a Web demo for the language, and a plugin is already available for IntelliJ IDEA 11.</li>
+						<li><strong>2016:</strong> Kotlin 1.0 was officially released. It was considered stable and ready for production.</li>
+						<li><strong>2017:</strong> Google officially announced Kotlin as a first-class language for Android applications development during Google I/O. This played a crucial role in Kotlin's popularity among Android developers.</li>
+						<li><strong>2019:</strong> Google announced Kotlin as its preferred language for Android app developers, meaning that development tooling would be optimized for Kotlin, and that Kotlin-specific APIs would be prioritized.</li>
+						<li><strong>2020:</strong> Kotlin 1.4 released with focusing on improving the performance and tooling.</li>
+						<li><strong>2021:</strong> Release of Kotlin 1.5.0 with stable language features like JVM records, sealed interfaces and the new default JVM IR compiler.</li>
+						<li><strong>2022:</strong> Kotlin 1.6 was released in November 2021.</li>
+						<li><strong>2023:</strong> Kotlin 1.7 was released in June 2023, including the alpha version of the new Kotlin K2 compiler.</li>
+						<li><strong>2023:</strong> Kotlin 1.8 was released in December 2023, 1.8.0 was released on January 11, 2024.</li>
+						<li><strong>2024:</strong> Kotlin 1.9 was released in July 2024, 1.9.0 was released on July 6, 2024.</li>
+						<li><strong>2024:</strong> Kotlin 2.0 was released in May 2024, 2.0.0 was released on May 21, 2024.</li>
+					</ul>
+				</div>
+			</section>
+		</section>
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Frameworks</h2>
+			</section>
+			<section>
+				<h3>Framework</h3>
+				<div class="summary">
+					When we talk about frameworks, we usually mean a collection of libraries and tools that help developers build applications in a faster and more productive way.
+				</div>
+				<div class="content">
+					<p>
+						For example, a framework can provide a set of libraries for ...
+					</p>
+					<ul>
+						<li>data access (databases)</li>
+						<li>security (user authorization and authentication)</li>
+						<li>network communication</li>
+						<li>configuration management</li>
+						<li>cloud integration</li>
+						<li>monitoring and logging</li>
+						<li>testing</li>
+					</ul>
+					<p>
+						... and other common tasks, so that developers don't have to write them from scratch.
+					</p>
+					<blockquote>
+						Frameworks can also provide a set of conventions and best practices for building applications,
+						which can help developers to write code that is more maintainable and scalable.
+					</blockquote>
+				</div>
+			</section>
+			<section>
+				<h3>Popular Frameworks</h3>
+				<div class="summary">
+					There are some Kotlin-specific frameworks, but often times, Kotlin developers use Java frameworks,
+					as Java and Kotlin are interoperable and can share ecosystem.
+				</div>
+				<div class="content">
+					<div class="row">
+						<div class="column">
+							<h4>Java</h4>
+							<ul>
+								<li>Spring Framework</li>
+								<li>Jakarta EE (formerly Java EE)</li>
+								<li>Hibernate</li>
+								<li>Play Framework</li>
+								<li>Apache Struts</li>
+								<li>Quarkus</li>
+								<li>MicroProfile</li>
+							</ul>
+						</div>
+						<div class="column">
+							<h4>Kotlin specific</h4>
+							<ul>
+								<li>Ktor</li>
+							</ul>
+						</div>
+					</div>
+					<p>
+						We will use <strong class="highlight">Ktor</strong> in this course,
+						which is a modern, lightweight, idiomatic Kotlin-specific framework for building web applications and microservices.
+					</p>
+				</div>
+			</section>
+			<section>
+				<section data-background-gradient="var(--kotlin-gradient)">
+					<h2>No Framework vs Framework</h2>
+				</section>
+				<section>
+					<h3>Should You Use a Framework?</h3>
+					<div class="summary">
+						Build everything from scratch or use battle-tested tools?
+					</div>
+					<div class="content">
+						<h4>No framework</h4>
+						<div class="row">
+							<div class="column">
+								<ul style="list-style-type:none; color: forestgreen">
+									<li>+ Full control over every part of the system</li>
+									<li>+ Good for learning how things work under the hood</li>
+									<li>+ Lightweight, no hidden magic</li>
+								</ul>
+							</div>
+							<div class="column">
+								<ul style="list-style-type:none; color: orangered">
+									<li>- You have to build everything yourself (routing, HTTP handling, etc.)</li>
+									<li>- Reinventing the wheel is time-consuming and error-prone</li>
+									<li>- Hard to scale and maintain in real-world projects</li>
+								</ul>
+							</div>
+						</div>
+						<br />
+						<br />
+						<h4>With framework (like Ktor)</h4>
+						<div class="row">
+							<div class="column">
+								<ul style="list-style-type:none; color: forestgreen">
+									<li>+ Ready-to-use features (routing, middleware, JSON handling, authentication, etc.)</li>
+									<li>+ Speeds up development, especially for teams</li>
+									<li>+ Community support and documentation</li>
+									<li>+ Focus on business logic instead of boilerplate code</li>
+									<li>+ Encourages best practices and convention-over-configuration</li>
+								</ul>
+							</div>
+							<div class="column">
+								<ul style="list-style-type:none; color: orangered">
+									<li>- Adds abstraction layers — might feel “magical” </li>
+									<li>- Learning curve for framework-specific concepts</li>
+									<li>- Can feel limiting for unusual use cases</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+			</section>
+		</section>
+
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Development Environment</h2>
+				<em>IDE</em>
+			</section>
+			<section>
+				<h3>What is Integrated Development Environment (IDE)</h3>
+				<div class="summary">
+					Being able to efficiently use an IDE is just as important as being able to write code.<br />
+					Gives you a set of tools that you need as a developer.
+				</div>
+				<div class="content">
+					<ul>
+						<li>Provides code editor with syntax highlighting</li>
+						<li>Easy ways to manage code, project and builds</li>
+						<li>
+							Helps your productivity
+							<div>
+								<em>contextual suggestions</em>,
+								<em>autocomplete</em>,
+								<em>code navigation</em>,
+								<em>refactoring</em>,
+								<em>language tip</em>
+							</div>
+						</li>
+						<li>
+							Helps you avoid some errors in your programs
+							<div>
+								<em>can warn you about problematic code</em><br />
+								<em>gives you tools inspect your code</em><br />
+								<em>gives you tools test your code</em>
+							</div>
+						</li>
+						<li>Integrates tools
+							<div>
+								<em>source code management, such as git</em><br />
+								<em>database clients</em><br />
+								<em>documentation</em><br />
+								<em>project management tools</em><br />
+								<em>AI</em>
+							</div>
+						</li>
+						<li>Usually has a community led plugin ecosystem</li>
+					</ul>
+				</div>
+			</section>
+		</section>
+
+		<section>
+			<section data-background-gradient="var(--kotlin-gradient)">
+				<h2>Your first Kotlin program</h2>
+				<em>Let's write some code!</em>
+			</section>
+			<section>
+				<h3>Your first Kotlin program</h3>
+				<div class="content">
+					<div>
+						<h4>1.</h4>
+						Download IntelliJ IDEA Community Edition from <a href="https://www.jetbrains.com/idea/download/">https://www.jetbrains.com/idea/download/</a>.
+					</div>
+					<br />
+					<div>
+						<h4>2.</h4>
+						Open IntelliJ IDEA and create a new Kotlin project.
+					</div>
+					<br />
+					<div>
+						<h4>3.</h4>
+						Create a new Kotlin file called <code class="inline">Main.kt</code> in the <code>src/kotlin</code> directory.
+					</div>
+					<br />
+					<div>
+						Write the following code in the <code class="inline">Main.kt</code> file.
+						<pre>
+							<code data-line-numbers data-trim data-noescape class="hljs kotlin">
+								fun main() {
+									println("Hello, World!")
+								}
+							</code>
+						</pre>
+					</div>
+					<br />
+					<div>
+						<h4>4.</h4>
+						Run the program by clicking the green arrow next to the <code>main</code> function.
+					</div>
+				</div>
+			</section>
+		</section>
+
+	</div>
+</div>
+
+<script src="./dist/reveal.js"></script>
+<script src="./plugin/notes/notes.js"></script>
+<script src="./plugin/markdown/markdown.js"></script>
+<script src="./plugin/highlight/highlight.js"></script>
+<script>
+	// More info about initialization & config:
+	// - https://revealjs.com/initialization/
+	// - https://revealjs.com/config/
+	Reveal.initialize({
+		hash: true,
+
+		// Learn about plugins: https://revealjs.com/plugins/
+		plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+	})
+	Reveal.configure({ showNotes: false })
+</script>
+</body>
+</html>

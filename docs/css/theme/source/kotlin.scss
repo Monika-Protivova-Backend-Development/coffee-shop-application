@@ -1,0 +1,73 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(./fonts/source-sans-pro/source-sans-pro.css);
+
+$kotlinColor1: rgb(177, 37, 234);
+$kotlinColor2: rgb(226, 68, 98);
+$kotlinColor3: rgb(127, 82, 255);
+$kotlinColor4: rgb(0, 0, 0);
+$kotlinGradient: linear-gradient(45deg, $kotlinColor3, $kotlinColor1, $kotlinColor2);
+
+$kotlinColor1-50: rgb(177, 37, 234, 0.5);
+$kotlinColor2-50: rgb(226, 68, 98, 0.5);
+$kotlinColor3-50: rgb(127, 82, 255, 0.5);
+$kotlinColor4-50: rgb(0, 0, 0, 0.5);
+$kotlinGradient-50: linear-gradient(45deg, $kotlinColor3-50, $kotlinColor1-50, $kotlinColor2-50);
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: white;
+
+$mainColor: $kotlinColor4;
+$headingColor: $kotlinColor3;
+
+$mainFontSize: 24px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: $kotlinColor3;
+$linkColorHover: $kotlinColor3( $linkColor, 15% );
+$selectionBackgroundColor: $kotlinColor3( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+$overlayElementBgColor: 0, 0, 0;
+$overlayElementFgColor: 240, 240, 240;
+
+// Text selection
+$selectionBackgroundColor: yellow;
+$selectionColor: $mainColor;
+
+// Change text colors against dark slide backgrounds
+@include dark-bg-text-color(#fff);
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+:root {
+  --kotlin-color-1: #{$kotlinColor1};
+  --kotlin-color-2: #{$kotlinColor2};
+  --kotlin-color-3: #{$kotlinColor3};
+  --kotlin-color-4: #{$kotlinColor4};
+  --kotlin-gradient: #{$kotlinGradient};
+  --kotlin-gradient-50: #{$kotlinGradient-50};
+}
