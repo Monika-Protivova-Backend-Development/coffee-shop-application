@@ -30,8 +30,14 @@ class ApplicationContainer : GenericContainer<ApplicationContainer>(
             "/app/config/application.yaml"
         )
 
+        // Copy the test configuration
+        withCopyFileToContainer(
+            MountableFile.forHostPath("../coffee-shop-integration-tests/src/test/resources/application-test.yaml"),
+            "/app/config/application-test.yaml"
+        )
+
         // Set the environment variable for the configuration file
-        withEnv("KTOR_CONFIG_FILE", "/app/config/application.yaml")
+        withEnv("KTOR_CONFIG_FILE", "/app/config/application-test.yaml")
 
         // Run the application
         withCommand("java", "-jar", "/app/app.jar")
@@ -50,7 +56,7 @@ class ApplicationContainer : GenericContainer<ApplicationContainer>(
      * Get the base URL for the application running in the container.
      */
     fun getBaseUrl(): String {
-        return "http://${host}:${getMappedPort(APP_PORT)}/api"
+        return "http://${host}:${getMappedPort(APP_PORT)}/api/v1"
     }
 
     companion object {

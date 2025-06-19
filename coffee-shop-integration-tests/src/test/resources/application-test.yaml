@@ -3,7 +3,7 @@ ktor:
     modules:
       - com.motycka.edu.ApplicationKt.module
   deployment:
-    port: 0  # Use a random port
+    port: 8080  # Use a fixed port that matches the container's exposed port
     host: "0.0.0.0"
 
 database:

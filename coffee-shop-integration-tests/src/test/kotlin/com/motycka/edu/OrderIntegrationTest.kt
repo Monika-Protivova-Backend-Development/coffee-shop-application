@@ -16,11 +16,9 @@ class OrderIntegrationTest : IntegrationTestBase() {
     private val template = CreateOrderTestRequest(
         customerId = 1,
         items = listOf(
-            MenuItemTestResponse(
-                id = 1,
-                name = "Espresso",
-                description = "Strong coffee shot",
-                price = 2.50
+            OrderItemTestRequest(
+                menuItemId = 1,
+                quantity = 1
             )
         )
     )
@@ -72,11 +70,9 @@ class OrderIntegrationTest : IntegrationTestBase() {
                         val newOrder = CreateOrderTestRequest(
                             customerId = null,
                             items = listOf(
-                                MenuItemTestResponse(
-                                    id = 1,
-                                    name = "Espresso",
-                                    description = "Strong coffee shot",
-                                    price = 2.50
+                                OrderItemTestRequest(
+                                    menuItemId = 1,
+                                    quantity = 1
                                 )
                             )
                         )
@@ -106,11 +102,9 @@ class OrderIntegrationTest : IntegrationTestBase() {
                         val newOrder = CreateOrderTestRequest(
                             customerId = customerWithDiscount,
                             items = listOf(
-                                MenuItemTestResponse(
-                                    id = 2, // Assuming menu item ID 2 has price 10.0
-                                    name = "Latte",
-                                    description = "Creamy coffee",
-                                    price = orderPrice
+                                OrderItemTestRequest(
+                                    menuItemId = 2, // Assuming menu item ID 2 has price 10.0
+                                    quantity = 1
                                 )
                             )
                         )
@@ -154,16 +148,8 @@ class OrderIntegrationTest : IntegrationTestBase() {
         "PUT /orders/{id}" - {
             "should return 200 OK for valid order update" {
                 runTest { client ->
-                    val updatedOrder = CreateOrderTestRequest(
-                        customerId = 1,
-                        items = listOf(
-                            MenuItemTestResponse(
-                                id = 1,
-                                name = "Latte",
-                                description = "Creamy coffee",
-                                price = 3.00
-                            )
-                        )
+                    val updatedOrder = UpdateOrderTestRequest(
+                        status = OrderStatus.COMPLETED
                     )
 
                     client.put("$baseUrl/orders/1") {
@@ -203,8 +189,8 @@ private fun validateOrderResponse(order: OrderTestResponse) {
     order.id.shouldBeGreaterThan(0)
     order.customerId.shouldNotBeNull()
     order.customerId.shouldBeGreaterThan(0)
-    order.items.shouldNotBeNull()
-    order.items.shouldNotBeEmpty()
+    order.menuItems.shouldNotBeNull()
+    order.menuItems.shouldNotBeEmpty()
     order.totalPrice.shouldNotBeNull()
     order.totalPrice.shouldBeGreaterThan(0.0)
     order.isPaid.shouldNotBeNull()

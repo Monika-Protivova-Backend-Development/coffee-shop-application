@@ -2,8 +2,6 @@ package com.motycka.edu.order
 
 import com.motycka.edu.menu.MenuItemId
 
-typealias OrderItemId = Long
-
 data class OrderItemDTO(
     val id: OrderItemId?,
     val orderId: OrderId,

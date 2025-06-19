@@ -2,7 +2,7 @@ package com.motycka.edu.customer
 
 import com.motycka.edu.user.UserId
 
-typealias CustomerId = Long
+
 
 class InternalCustomerService(
     private val customerRepository: CustomerRepository

@@ -13,25 +13,36 @@ enum class OrderStatus {
 }
 
 @Serializable
+data class OrderItemTestResponse(
+    val menuItem: MenuItemTestResponse,
+    val quantity: Int
+)
+
+@Serializable
 data class OrderTestResponse(
     val id: OrderTestId?,
     val customerId: CustomerId?,
-    val items: List<MenuItemTestResponse>?,
+    val menuItems: List<OrderItemTestResponse>?,
     val totalPrice: Double?,
     val isPaid: Boolean?,
     val status: OrderStatus?
 )
 
 @Serializable
+data class OrderItemTestRequest(
+    val menuItemId: MenuItemTestId,
+    val quantity: Int
+)
+
+@Serializable
 data class CreateOrderTestRequest(
     val customerId: CustomerId?,
-    val items: List<MenuItemTestResponse>?
+    val items: List<OrderItemTestRequest>?
 )
 
 @Serializable
 data class UpdateOrderTestRequest(
-    val customerId: CustomerId?,
-    val items: List<MenuItemTestResponse>?
+    val status: OrderStatus?
 )
 
 @Serializable
