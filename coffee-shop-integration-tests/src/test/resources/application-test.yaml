@@ -15,10 +15,3 @@ serialization:
   json:
     prettyPrint: true
     isLenient: true
-
-security:
-  auth:
-    realm: "Item API"
-    admin:
-      username: "admin"
-      password: "password"

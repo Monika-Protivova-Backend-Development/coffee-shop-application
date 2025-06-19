@@ -7,6 +7,27 @@ plugins {
 group = "com.motycka.edu"
 version = "0.0.1"
 
+// Configure JAR tasks to not include version in the filename
+tasks.withType<Jar> {
+    archiveVersion.set("")
+
+    // Ensure the main class is properly set in the manifest
+    manifest {
+        attributes(
+            mapOf(
+                "Main-Class" to "com.motycka.edu.ApplicationKt"
+            )
+        )
+    }
+}
+
+// Configure the Ktor plugin
+ktor {
+    fatJar {
+        archiveFileName.set("coffee-shop-application-all.jar")
+    }
+}
+
 application {
     mainClass.set("com.motycka.edu.ApplicationKt")
 }

@@ -20,7 +20,7 @@ class ApplicationContainer : GenericContainer<ApplicationContainer>(
 
         // Copy the application JAR file
         withCopyFileToContainer(
-            MountableFile.forHostPath("../coffee-shop-application/build/libs/basic-application-all.jar"),
+            MountableFile.forHostPath("../coffee-shop-application/build/libs/coffee-shop-application-all.jar"),
             "/app/app.jar"
         )
 
@@ -56,7 +56,7 @@ class ApplicationContainer : GenericContainer<ApplicationContainer>(
      * Get the base URL for the application running in the container.
      */
     fun getBaseUrl(): String {
-        return "http://${host}:${getMappedPort(APP_PORT)}/api/v1"
+        return "http://${host}:${getMappedPort(APP_PORT)}/api"
     }
 
     companion object {
