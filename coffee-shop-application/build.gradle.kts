@@ -47,6 +47,22 @@ kotlin {
     jvmToolchain(21)
 }
 
+// Create a task for unit tests
+val unitTest = task<Test>("unitTest") {
+    description = "Runs unit tests."
+    group = "verification"
+
+    // Use the same test classes as the regular test task
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
+
+    useJUnitPlatform()
+}
+
+// Configure the standard test task to run unit tests
 tasks.test {
     useJUnitPlatform()
+
+    // Make the test task depend on the unitTest task
+    dependsOn(unitTest)
 }
