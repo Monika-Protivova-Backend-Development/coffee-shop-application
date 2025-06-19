@@ -12,8 +12,3 @@ interface OrderRepository {
 
 }
 
-interface OrderItemRepository {
-    fun selectByOrderId(orderId: OrderId): List<OrderItemDTO>
-    fun createOrderItems(orderItems: List<OrderItemDTO>)
-}
-
